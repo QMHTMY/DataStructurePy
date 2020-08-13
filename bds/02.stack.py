@@ -28,7 +28,6 @@ class Stack():
     #    return self.items[-1]
 
 if __name__ == "__main__":
-
     stk = Stack()
     stk.push(5)
     stk.push(6)
