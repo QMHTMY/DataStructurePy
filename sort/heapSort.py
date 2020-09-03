@@ -2,7 +2,7 @@
 """堆排序
 包括
 从小到大的正排序，用大根堆
-从大到小的正排序，用小根堆
+从大到小的逆排序，用小根堆
 """
 
 def bigHeapSort(alist):
@@ -10,10 +10,10 @@ def bigHeapSort(alist):
     bigBuildHeap(alist)                                      
     index = len(alist) - 1                               #初始化构建堆 
     while index > 0:                                                          
-        alist[0], alist[index] = alist[index], alist[0]                       
-        percUp(alist, index, 0)                          #取出最大值  
-        index -= 1                                       #从0开始构建大根堆 
-                                                         #循环直到排序完成   
+        alist[0], alist[index] = alist[index], alist[0]  #取出最大值                       
+        percUp(alist, index, 0)                          #从0开始构建大根堆 
+        index -= 1                                       #循环直到排序完成   
+                                                         
     return alist
 
 def bigBuildHeap(alist):
@@ -85,7 +85,7 @@ class BinaryHeap():
         self.percUp(self.size)
     
     def percUp(self, index):
-        """向上移动元素实现平衡"""
+        #向上移动元素实现平衡
         while index // 2 > 0:
             if self.heapList[index] < self.heapList[index//2]:
                 tmp = self.heapList[index//2]
@@ -100,10 +100,10 @@ class BinaryHeap():
             return None
     
     def delMin(self):
-        """最小值在1位置"""
+        #因为0占位，最小值在index=1的位置
         if self.size > 0:
             minium = self.heapList[1]
-            self.heapList[1] = self.heapList[self.size] #此处不能出栈，size=1时会引发IndexError
+            self.heapList[1] = self.heapList[self.size] #不能出栈，size=1时会引发IndexError
             self.heapList.pop() 
             self.size -= 1
             self.percDown(1)
@@ -113,7 +113,7 @@ class BinaryHeap():
         return minium
 
     def percDown(self, parent):
-        """向下移动元素实现平衡"""
+        #向下移动元素实现平衡
         while (2 * parent) <= self.size:
             mc = self.minChild(parent)
             if self.heapList[parent] > self.heapList[mc]:
@@ -123,7 +123,7 @@ class BinaryHeap():
     def minChild(self, parent):
         if (2 * parent + 1) > self.size: #只有左孩子
             return 2 * parent 
-        else:                         #有左右孩子
+        else:                            #有左右孩子
             if self.heapList[2 * parent] < self.heapList[2 * parent+ 1]:
                 return 2 * parent
             else:
@@ -133,14 +133,14 @@ class BinaryHeap():
         self.size = len(alist)
         self.heapList = [0] + alist
 
-        lastParent = len(alist) // 2 #取中值，所有叶及子都能处理
+        lastParent = len(alist) // 2     #取中值，所有叶及子都能处理
         while lastParent > 0:
             self.percDown(lastParent)
             lastParent -= 1
 
         #插入元素时需要从最底层往上升
-        #构建堆时需要从中部逐步回撤到根，同时不断将元素下降
-        #大大取大，小小取小，有向上冒泡或下沉的感觉
+        #构建堆时需要从最后一个内部节点逐步回撤到根，同时不断将元素下降
+        #遵循原则：大大取大，小小取小，有向上冒泡或下沉的感觉
 
     def isEmpty(self):
         return 0 == self.size
