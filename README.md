@@ -40,4 +40,4 @@ B.non-exchange sort algorithms
 * 2020-08-13 uploaded Stack, Queue, Deque, graph etc.
 
 ### Correction 
-Wellcome to open issues or pull-request.
+Please to open issues or pull-request.
