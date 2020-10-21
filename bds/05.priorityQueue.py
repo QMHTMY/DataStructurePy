@@ -3,7 +3,7 @@
 #Date: 2020-07-13
 
 class PriorityQueue:
-    """优先队列"""
+    """堆实现优先队列"""
     def __init__(self):
         self.heapArray = [(0,0)]
         self.currentSize = 0

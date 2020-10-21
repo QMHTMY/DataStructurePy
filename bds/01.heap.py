@@ -3,7 +3,7 @@
 # Date: 2020-07-13
 
 class BinHeap:
-    """列表组堆"""
+    """列表实现堆"""
     def __init__(self):
         self.heapList = [0]
         self.currentSize = 0

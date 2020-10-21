@@ -10,6 +10,7 @@
    2.梅森素数求余数作为位置参数 H(item) = item % hashMn
 """
 class HashTable:
+    "列表实现哈希表"
     def __init__(self, size=10):
         self.size  = size
         self.slots = [None] * self.size
